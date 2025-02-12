@@ -38,9 +38,24 @@ TARGET_NO_BOOTLOADER := true
 TARGET_SCREEN_DENSITY := 280
 
 # Kernel
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 \
+			earlycon=msm_geni_serial,0x4a90000 \
+			androidboot.hardware=qcom \
+			androidboot.console=ttyMSM0 \
+			androidboot.memcg=1 \
+			lpm_levels.sleep_disabled=1 \
+			video=vfb:640x400,bpp=32,memsize=3072000 \
+			msm_rtb.filter=0x237 \
+			service_locator.enable=1 \
+			loop.max_part=7 \
+			swiotlb=2048 \
+			androidboot.hab.csv=16 \
+			androidboot.hab.product=caprip \
+			androidboot.hab.cid=50 \
+			firmware_class.path=/vendor/firmware_mnt/image
 BOARD_BOOTIMG_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_CONFIG := capri_defconfig
 TARGET_KERNEL_SOURCE := kernel/motorola/capri
 
