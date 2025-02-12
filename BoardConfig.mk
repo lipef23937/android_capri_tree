@@ -10,13 +10,6 @@ DEVICE_PATH := device/motorola/capri
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
-# A/B
-AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS += \
-    vendor \
-    system_ext \
-    system \
-    product
 BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
@@ -72,6 +65,12 @@ BOARD_MOTOROLA_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Platform
 TARGET_BOARD_PLATFORM := bengal
+QCOM_BOARD_PLATFORMS += bengal
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno610
+TARGET_USES_64_BIT_BINDER := true
+TARGET_SUPPORTS_64_BIT_APPS := true
+BUILD_BROKEN_DUP_RULES := true
+TARGET_USES_QCOM_BSP := true
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
@@ -95,6 +94,11 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
+
+# A/B device flags
+TARGET_NO_RECOVERY := true
+BOARD_USES_RECOVERY_AS_BOOT := true
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
